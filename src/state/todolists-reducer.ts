@@ -129,11 +129,12 @@ export const addTodoListTC = (title: string) => {
     }
 }
 
-export const changeTodolistTitle = (id: string, title:string) => {
+export const changeTodolistTitleTC = (id: string, title:string) => {
     return (dispatch: Dispatch) => {
         todoListsAPI.updateTodolist(id, title)
             .then((res) => {
-
+dispatch(changeTodolistTitleAC(id, title))
             })
     }
 }
+

@@ -7,13 +7,13 @@ import {Menu} from '@material-ui/icons';
 import {
     addTodoListTC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC,
+    changeTodolistTitleAC, changeTodolistTitleTC,
     fetchTodoListsThunk,
     FilterValuesType,
     removeTodoListTC,
     TodolistDomainType
 } from './state/todolists-reducer'
-import {addTaskTC, changeTaskTitleAC, removeTaskTC, updateTaskStatusTC} from './state/tasks-reducer';
+import {addTaskTC, changeTaskTitleAC, changeTaskTitleTC, removeTaskTC, updateTaskStatusTC} from './state/tasks-reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
 import {TaskStatuses, TaskType} from './api/todolists-api'
@@ -56,8 +56,7 @@ function App() {
     }, [dispatch]);
 
     const changeTaskTitle = useCallback(function (id: string, newTitle: string, todolistId: string) {
-        const action = changeTaskTitleAC(id, newTitle, todolistId);
-        dispatch(action);
+        dispatch(changeTaskTitleTC(id, newTitle, todolistId));
     }, [dispatch]);
 
     const changeFilter = useCallback(function (value: FilterValuesType, todolistId: string) {
@@ -73,8 +72,7 @@ function App() {
     }, [dispatch]);
 
     const changeTodolistTitle = useCallback(function (id: string, title: string) {
-        const action = changeTodolistTitleAC(id, title);
-        dispatch(action);
+        dispatch(changeTodolistTitleTC(id,title));
     }, [dispatch]);
 
     const addTodolist = useCallback((title: string) => {
